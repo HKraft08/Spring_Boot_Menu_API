@@ -6,9 +6,9 @@ import com.example.spring_boot_menu_api.entity.Menu;
 import com.example.spring_boot_menu_api.exception.ResourceNotFoundException;
 import com.example.spring_boot_menu_api.repository.MenuRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.stereotype.Service;
 
-import java.nio.file.ReadOnlyFileSystemException;
-
+@Service
 public class MenuService {
 
     private final MenuRepository menuRepository;
@@ -45,6 +45,15 @@ public class MenuService {
         Menu updatedMenu = menuRepository.save(menu);
 
         return mapToResponse(updatedMenu);
+    }
+
+    //Delete menu item
+    @Transactional
+    public void deleteItem(Long id) {
+
+        Menu menu = findByIdOrThrow(id);
+
+        menuRepository.delete(menu);
     }
 
     private MenuResponse mapToResponse(Menu menu) {

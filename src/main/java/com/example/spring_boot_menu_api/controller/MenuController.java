@@ -37,4 +37,12 @@ public class MenuController {
 
         return ResponseEntity.ok(menuService.updateItem(id, request));
     }
+
+    //Delete menu item
+    public ResponseEntity<Void> deleteItem(@PathVariable Long id) {
+
+        menuService.deleteItem(id);
+
+        return ResponseEntity.noContent().build();
+    }
 }
