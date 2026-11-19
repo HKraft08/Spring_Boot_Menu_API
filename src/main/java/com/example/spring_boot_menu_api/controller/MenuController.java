@@ -6,10 +6,7 @@ import com.example.spring_boot_menu_api.service.MenuService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1/menu")
@@ -31,5 +28,13 @@ public class MenuController {
                 .status(HttpStatus.CREATED)
                 .body(response);
 
+    }
+
+    //Update menu item
+    @PutMapping("/{id}")
+    public ResponseEntity<MenuResponse> updateItem(
+            @PathVariable Long id, @Valid @RequestBody MenuRequest request) {
+
+        return ResponseEntity.ok(menuService.updateItem(id, request));
     }
 }
