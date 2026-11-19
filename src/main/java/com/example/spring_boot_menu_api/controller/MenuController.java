@@ -39,6 +39,7 @@ public class MenuController {
     }
 
     //Delete menu item
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteItem(@PathVariable Long id) {
 
         menuService.deleteItem(id);
